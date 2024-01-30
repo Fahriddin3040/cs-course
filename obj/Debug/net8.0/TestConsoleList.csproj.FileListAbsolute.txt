@@ -1,0 +1,14 @@
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.GeneratedMSBuildEditorConfig.editorconfig
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.AssemblyInfoInputs.cache
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.AssemblyInfo.cs
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.csproj.CoreCompileInputs.cache
+/home/ren/tmp/TestConsoleList/bin/Debug/net8.0/TestConsoleList
+/home/ren/tmp/TestConsoleList/bin/Debug/net8.0/TestConsoleList.deps.json
+/home/ren/tmp/TestConsoleList/bin/Debug/net8.0/TestConsoleList.runtimeconfig.json
+/home/ren/tmp/TestConsoleList/bin/Debug/net8.0/TestConsoleList.dll
+/home/ren/tmp/TestConsoleList/bin/Debug/net8.0/TestConsoleList.pdb
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.dll
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/refint/TestConsoleList.dll
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.pdb
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/TestConsoleList.genruntimeconfig.cache
+/home/ren/tmp/TestConsoleList/obj/Debug/net8.0/ref/TestConsoleList.dll
