@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "IL9bxclO1RwywovtwkyPDcOfZYN8NLIJMSF6ykXN52sXOcRGCeV6JmB81IjaAG5GbACWWOT6ooL2ebXUBveRQQ==",
+  "dgSpecHash": "HGpNSGVmHtC5zq6RDYJIQAoIoLv20paS/jqeOXOZun9x0WktrGBXr5byKsLuPj0mV8UYoDSVPPuG21HKvSLgSA==",
   "success": true,
   "projectFilePath": "/home/ren/Development/Projects/csharp/School/School.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/ren/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/ren/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/ren/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/ren/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/ren/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/ren/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
