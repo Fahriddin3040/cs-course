@@ -1,0 +1,4 @@
+/home/krago/Dev-Softs/Installed/Rider/Projects/CS-cources/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+/home/krago/Dev-Softs/Installed/Rider/Projects/CS-cources/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.AssemblyInfoInputs.cache
+/home/krago/Dev-Softs/Installed/Rider/Projects/CS-cources/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.AssemblyInfo.cs
+/home/krago/Dev-Softs/Installed/Rider/Projects/CS-cources/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.csproj.CoreCompileInputs.cache

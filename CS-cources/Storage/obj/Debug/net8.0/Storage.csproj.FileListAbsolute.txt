@@ -1,0 +1,7 @@
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.GeneratedMSBuildEditorConfig.editorconfig
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.AssemblyInfoInputs.cache
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.AssemblyInfo.cs
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.csproj.CoreCompileInputs.cache
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.MvcApplicationPartsAssemblyInfo.cache
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.RazorAssemblyInfo.cache
+/home/ren/Development/Projects/csharp/CS-cources/Storage/obj/Debug/net8.0/Storage.RazorAssemblyInfo.cs
