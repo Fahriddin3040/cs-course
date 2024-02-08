@@ -5,7 +5,7 @@ namespace School.Accounts.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    public ICollection<User> GetAll()
+    public ICollection<AbstractUser> GetAll()
     {
         throw new NotImplementedException();
     }

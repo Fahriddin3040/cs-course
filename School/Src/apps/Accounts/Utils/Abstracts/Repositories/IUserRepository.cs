@@ -4,5 +4,5 @@ namespace School.Accounts.Utils.Abstracts.Repositories;
 
 public interface IUserRepository
 {
-	public ICollection<User> GetAll();
+	public ICollection<AbstractUser> GetAll();
 }

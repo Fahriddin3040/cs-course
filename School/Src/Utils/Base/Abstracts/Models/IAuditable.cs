@@ -4,6 +4,6 @@ namespace School.utils.Abstracts.Models;
 
 public interface IAuditable
 {
-	User CreatedBy { get; set; }
-	User UpdatedBy {get; set;}
+	AbstractUser CreatedBy { get; set; }
+	AbstractUser UpdatedBy {get; set;}
 }
