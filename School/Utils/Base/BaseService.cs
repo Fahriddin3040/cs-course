@@ -8,13 +8,17 @@ public abstract class BaseService<T> : IBaseService<T> where T : class
 	{
 		_repository = repository;
 	}
-	public IEnumerable<T> GetAll()
+	public ICollection<T> GetAll()
 	{
 		return _repository.GetAll();
 	}
 	public T GetById(Guid id)
 	{
 		return _repository.GetById(id);
+	}
+	public T Create(T obj)
+	{
+		throw new NotImplementedException();
 	}
 	public T Update(Guid id, T updatedObj)
 	{

@@ -20,4 +20,16 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 	{
 		throw new NotImplementedException();
 	}
+	public T Create(T obj)
+	{
+		throw new NotImplementedException();
+	}
+	public T Update(Guid id, T obj)
+	{
+		throw new NotImplementedException();
+	}
+	public bool Delete(Guid id)
+	{
+		throw new NotImplementedException();
+	}
 }
