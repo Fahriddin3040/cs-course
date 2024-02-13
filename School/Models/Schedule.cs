@@ -1,6 +1,5 @@
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
-using School.Utils.Base.Models;
+using School.Utils.Base;
+using School.Utils.Abstracts.Models;
 
 namespace School.Models;
 

@@ -1,6 +1,4 @@
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
-using School.Utils.Base.Models;
+using School.Utils.Abstracts.Models;
 
 namespace School.Models;
 

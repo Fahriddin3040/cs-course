@@ -1,5 +1,3 @@
-
-
 namespace School.Models;
 
 public class Subject

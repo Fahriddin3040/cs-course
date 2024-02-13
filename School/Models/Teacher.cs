@@ -1,4 +1,4 @@
-using School.Utils.Base.Models;
+using School.Utils.Abstracts.Models;
 
 namespace School.Models;
 
