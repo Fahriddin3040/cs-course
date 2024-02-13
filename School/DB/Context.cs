@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using Microsoft.EntityFrameworkCore;
 using School.Models;
 
@@ -23,11 +25,13 @@ public class SchoolDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-		modelBuilder.Entity<Teacher>()
-			.HasMany(t => t.Subjects)
+		modelBuilder.Entity<Teacher>( entity =>
+		{
+			entity.HasKey(t => t.Id);
+			entity.HasMany(t => t.Subjects)
 			.WithMany(sub => sub.Teachers)
 			.UsingEntity(j => j.ToTable("TeacherSubjects"));
-
+		}
         base.OnModelCreating(modelBuilder);
     }
 }
