@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using School.Models;
+using School.Utils.Base;
 
 namespace School.DataBase;
 
@@ -10,7 +11,7 @@ public class SchoolDbContext : DbContext
 	public DbSet<Trustee> Trustees { get; set; }
 	public DbSet<Group> Groups { get; set; }
 	public DbSet<Subject> Subjects { get; set; }
-	public DbSet<Schedule> Schedules { get; set; }
+		public DbSet<Schedule> Schedules { get; set; }
 	public SchoolDbContext()
 	{
 		Database.EnsureCreated();
@@ -23,11 +24,39 @@ public class SchoolDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-		modelBuilder.Entity<Teacher>()
-			.HasMany(t => t.Subjects)
-			.WithMany(sub => sub.Teachers)
-			.UsingEntity(j => j.ToTable("TeacherSubjects"));
+		{
+		modelBuilder.Entity<Group>()
+			.HasOne(gr => gr.Curator)
+			.WithOne(t => t.Group)
+			.HasForeignKey<Group>(gr => gr.CuratorId);
+
+		modelBuilder.Entity<Group>()
+			.HasMany(gr => gr.Students)
+			.WithOne(s => s.Group);
+
+		modelBuilder.Entity<Group>()
+			.HasMany(gr => gr.Schedules)
+			.WithOne(sch => sch.Group);
+
+		modelBuilder.Entity<Schedule>()
+			.HasOne(sch => sch.Teacher)
+			.WithMany(t => t.Schedules);
+
+		modelBuilder.Entity<Schedule>()
+			.HasOne(sch => sch.Subject)
+			.WithMany()
+			.HasForeignKey(sch => sch.Subject);
+
+		modelBuilder.Entity<Subject>()
+			.HasMany(sub => sub.Teachers)
+			.WithMany(t => t.Subjects)
+			.UsingEntity(j => j.ToTable("SubjectTeachers"));
+	
+		modelBuilder.Entity<Student>()
+			.HasOne(s => s.Trustee)
+			.WithMany(tr => tr.Students);
 
         base.OnModelCreating(modelBuilder);
     }
+	}
 }

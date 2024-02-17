@@ -30,7 +30,6 @@
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/scopedcss/bundle/School.styles.css
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/scopedcss/projectbundle/School.bundle.scp.css
-/home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.csproj.CopyComplete
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.dll
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/refint/School.dll
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.pdb
@@ -41,3 +40,4 @@
 /home/ren/Development/Projects/csharp/School/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/ren/Development/Projects/csharp/School/bin/Debug/net8.0/Npgsql.dll
 /home/ren/Development/Projects/csharp/School/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.csproj.Up2Date
