@@ -4,6 +4,6 @@ namespace School.Models;
 
 public class Trustee : AbstractUser
 {
-	public ICollection<Student> Students { get; set; }
+	public List<Student> Students { get; set; }
 	public string? Comment { get; set; }
 }

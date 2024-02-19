@@ -4,6 +4,8 @@ namespace School.Models;
 
 public class Student : AbstractUser
 {
-	public Trustee Trustee { get; set; }
+	public Guid? GroupId { get; set; }
+	public Guid? TrusteeId { get; set; }
+	public Trustee? Trustee { get; set; }
 	public Group? Group { get; set; }
 }
