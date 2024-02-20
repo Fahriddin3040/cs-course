@@ -8,5 +8,5 @@ public interface IBaseRepository<T>
 	T GetById(Guid id);
 	T Create(T obj);
 	T Update(Guid id, T obj);
-	bool Delete(Guid id);
+	void Delete(Guid id);
 }

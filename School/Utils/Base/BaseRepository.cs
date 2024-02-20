@@ -28,7 +28,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 	{
 		throw new NotImplementedException();
 	}
-	public bool Delete(Guid id)
+	public void Delete(Guid id)
 	{
 		throw new NotImplementedException();
 	}

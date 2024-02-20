@@ -48,7 +48,7 @@ namespace School.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 20, 0, 49, 12, 420, DateTimeKind.Local).AddTicks(9920));
+                        .HasDefaultValue(new DateTime(2024, 2, 20, 20, 0, 24, 873, DateTimeKind.Local).AddTicks(3644));
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -128,7 +128,7 @@ namespace School.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 20, 0, 49, 12, 419, DateTimeKind.Local).AddTicks(8463));
+                        .HasDefaultValue(new DateTime(2024, 2, 20, 20, 0, 24, 872, DateTimeKind.Local).AddTicks(1632));
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -181,7 +181,7 @@ namespace School.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 20, 0, 49, 12, 421, DateTimeKind.Local).AddTicks(4443));
+                        .HasDefaultValue(new DateTime(2024, 2, 20, 20, 0, 24, 873, DateTimeKind.Local).AddTicks(8322));
 
                     b.Property<string>("Email")
                         .HasColumnType("text");

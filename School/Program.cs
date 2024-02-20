@@ -1,9 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using School.DataBase;
+using School.Repositories;
+using School.Services;
+using School.Utils.Abstracts.Repositories;
+using School.Utils.Abstracts.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<SchoolDbContext>(con => con.UseNpgsql(
+    ("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089"))
+    .LogTo(Console.Write));
+
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 var app = builder.Build();
 

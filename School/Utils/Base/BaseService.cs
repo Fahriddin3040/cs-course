@@ -24,8 +24,8 @@ public abstract class BaseService<T> : IBaseService<T> where T : class
 	{
 		return _repository.Update(id, updatedObj);
 	}
-	public bool Delete(Guid id)
+	public void Delete(Guid id)
 	{
-		return _repository.Delete(id);
+		_repository.Delete(id);
 	}
 }

@@ -20,6 +20,7 @@ public class SchoolDbContext : DbContext
 	{
 		Database.EnsureCreated();
 	}
+	
 	static SchoolDbContext()
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -27,10 +28,11 @@ public class SchoolDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089");
-
-		base.OnConfiguring(optionsBuilder);
+	optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089");
+	
+        base.OnConfiguring(optionsBuilder);
     }
+
     protected override  void OnModelCreating(ModelBuilder modelBuilder)
     {
 		ConfigureTeacher(modelBuilder);

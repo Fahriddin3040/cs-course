@@ -6,5 +6,5 @@ public interface IBaseService<T> where T : class
 	T GetById(Guid id);
 	T Create(T obj);
 	T Update(Guid id, T updatedObj);
-	bool Delete(Guid id);
+	void Delete(Guid id);
 }
