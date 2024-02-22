@@ -8,22 +8,23 @@ namespace School.Services;
 public class TeacherService : ITeacherService
 {
 	private SchoolDbContext _context;
-	private ITeacherRepository _repository;
+	private ISqlRepository _repository;
 
-	public TeacherService(SchoolDbContext dbContext, ITeacherRepository teacherRepository)
+	public TeacherService(SchoolDbContext dbContext, ISqlRepository sqlRepository)
 	{
 		_context = dbContext;
-		_repository = TeacherRepository;
+		_repository = sqlRepository;
 	}
 
     public Teacher Create(Teacher obj)
     {
-        return _repository.Create(obj);
+        _repository.Create(obj);
+        _repository.SaveChanges();
     }
 
-    public void Delete(Guid id)
+    public bool Delete(Guid id)
     {
-        _repository.Delete(id);
+       return  _repository.Delete(id);
     }
 
     public ICollection<Teacher> GetAll()
@@ -36,7 +37,7 @@ public class TeacherService : ITeacherService
 		return _repository.GetById(id);
     }
 
-    public Teacher Update(Guid id, Teacher obj)
+    public bool Update(Guid id, Teacher obj)
     {
         return _repository.Update(id, obj);
     }

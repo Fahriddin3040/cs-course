@@ -2,11 +2,11 @@ namespace School.Utils.Base;
 
 public abstract class BaseService<T> : IBaseService<T> where T : class
 {
-	private readonly IBaseRepository<T> _repository;
+	private readonly ISqlRepository _repository;
 
-	public BaseService(IBaseRepository<T> repository)
+	public BaseService(ISqlRepository sqlRepository)
 	{
-		_repository = repository;
+		_repository = sqlRepository;
 	}
 	public ICollection<T> GetAll()
 	{
@@ -16,16 +16,16 @@ public abstract class BaseService<T> : IBaseService<T> where T : class
 	{
 		return _repository.GetById(id);
 	}
-	public T Create(T obj)
+	public bool Create(T obj)
 	{
-		throw new NotImplementedException();
+		return _repository.Create(obj)
 	}
-	public T Update(Guid id, T updatedObj)
+	public bool Update(T updatedObj)
 	{
-		return _repository.Update(id, updatedObj);
+		return _repository.Update(updatedObj);
 	}
-	public void Delete(Guid id)
+	public bool Delete(Guid id)
 	{
-		_repository.Delete(id);
+		return _repository.Delete(id);
 	}
 }

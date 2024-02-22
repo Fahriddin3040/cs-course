@@ -3,4 +3,4 @@ using School.Utils.Base;
 
 namespace School.Utils.Abstracts.Services;
 
-public interface IStudentService : IBaseService<Student>{}
+public interface IStudentService : BaseService<Student>{}

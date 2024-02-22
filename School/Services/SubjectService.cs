@@ -8,22 +8,22 @@ namespace School.Services;
 public class SubjectService : ISubjectService
 {
 	private SchoolDbContext _context;
-	private ISubjectRepository _repository;
+	private ISqlRepository _repository;
 
-	public SubjectService(SchoolDbContext dbContext, ISubjectRepository SubjectRepository)
+	public SubjectService(SchoolDbContext dbContext, ISqlRepository sqlRepository)
 	{
 		_context = dbContext;
-		_repository = SubjectRepository;
+		_repository = sqlRepository;
 	}
 
-    public Subject Create(Subject obj)
+    public bool Create(Subject obj)
     {
         return _repository.Create(obj);
     }
 
-    public void Delete(Guid id)
+    public bool Delete(Guid id)
     {
-        _repository.Delete(id);
+        return _repository.Delete(id);
     }
 
     public ICollection<Subject> GetAll()
@@ -36,7 +36,7 @@ public class SubjectService : ISubjectService
 		return _repository.GetById(id);
     }
 
-    public Subject Update(Guid id, Subject obj)
+    public bool Update(Guid id, Subject obj)
     {
         return _repository.Update(id, obj);
     }
