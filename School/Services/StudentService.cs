@@ -2,7 +2,11 @@ using School.DataBase;
 using School.Models;
 using School.Utils.Abstracts.Repositories;
 using School.Utils.Abstracts.Services;
+using School.Utils.Base;
 
 namespace School.Services;
 
-public class StudentService : IStudentService{}
+public class StudentService : BaseService<Student>
+{
+	public StudentService(ISqlRepository<Student> sqlRepository) : base(sqlRepository){}
+}
