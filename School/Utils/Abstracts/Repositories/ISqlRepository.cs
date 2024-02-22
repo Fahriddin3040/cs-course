@@ -2,9 +2,10 @@ namespace School.Utils.Abstracts.Repositories;
 
 public interface ISqlRepository<T>
 {
-	ICollection<T> GetAll();
+	IQueryable<T> GetAll();
 	T GetById(Guid id);
-	T Create(T obj);
-	T Update(T obj);
-	void Delete(Guid id);
+	bool Create(T obj);
+	bool Update(T obj);
+	bool Delete(Guid id);
+	bool Save();
 }

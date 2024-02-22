@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Storage;
 using School.DataBase;
 using School.Utils.Abstracts.Repositories;
 using School.Utils.Base;
@@ -7,6 +8,7 @@ namespace School.Repositories;
 public class SqlRepository<T> : ISqlRepository<T> where T : class, IBaseEntity
 {
 	private readonly SchoolDbContext _context;
+	private bool Disposed = false; 
 	
 	public SqlRepository(SchoolDbContext dbContext)
 	{
@@ -20,27 +22,58 @@ public class SqlRepository<T> : ISqlRepository<T> where T : class, IBaseEntity
 	{
 		return _context.Set<T>().SingleOrDefault(v => v.Id == id);
 	}
-	public bool Create(Guid id, T obj)
+	public bool Create(T obj)
 	{
 		_context.Add(obj);
 
-		var result = _context.SaveChanges();
-
-		return result > 0;
+		return this.Save();
 	}
 	public bool Update(T obj)
 	{
-		_context.Update(obj);
+		var existing_obj = _context.Set<T>().SingleOrDefault(e => e.Id == obj.Id);
 
-		var result = _context.SaveChanges();
+		if(existing_obj == null)
+		{
+			return false;
+		}
 
-		return result > 0;
+		_context.Entry(existing_obj).CurrentValues.SetValues(obj);
+
+		return this.Save();
 	}
 	public bool Delete(Guid id)
 	{
-		T obj = _context.Set<T>().SingleOrDefault(obj => obj.Id == id);
-		var result =_context.SaveChanges();
-		
-		return result > 0;
+		var obj = _context.Set<T>().Find(id);
+
+		if(obj == null)
+		{
+			return false;
+		}	
+
+		_context.Remove(obj);
+
+		return this.Save();
 	}
+	
+	public bool Save()
+	{
+		return _context.SaveChanges() > 0;
+	}
+	protected virtual void Dispose(bool disposing)
+	{
+		if(!this.Disposed)
+		{
+			if(disposing)
+			{
+				_context.Dispose();
+			}
+			this.Disposed = true;
+		}
+	}
+	public void Dispose()
+	{
+		Dispose(true);
+		GC.SuppressFinalize(this);
+	}
+	
 }

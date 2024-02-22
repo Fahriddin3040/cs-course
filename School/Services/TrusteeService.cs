@@ -2,18 +2,17 @@ using School.DataBase;
 using School.Models;
 using School.Utils.Abstracts.Repositories;
 using School.Utils.Abstracts.Services;
+using School.Utils.Base;
 
 namespace School.Services;
 
-public class TrusteeService : ITrusteeService
+public class TrusteeService : IBaseService<Trustee>
 {
-	private SchoolDbContext _context;
-	private IBaseRepository _repository;
+	private ISqlRepository<Trustee> _repository;
 
-	public TrusteeService(SchoolDbContext dbContext, ITrusteeRepository TrusteeRepository)
+	public TrusteeService(ISqlRepository<Trustee> trusteeRepository)
 	{
-		_context = dbContext;
-		_repository = TrusteeRepository;
+		_repository = trusteeRepository;
 	}
 
     public Trustee Create(Trustee obj)
