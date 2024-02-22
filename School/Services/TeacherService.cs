@@ -10,7 +10,7 @@ public class TeacherService : ITeacherService
 	private SchoolDbContext _context;
 	private ITeacherRepository _repository;
 
-	public TeacherService(SchoolDbContext dbContext, ITeacherRepository TeacherRepository)
+	public TeacherService(SchoolDbContext dbContext, ITeacherRepository teacherRepository)
 	{
 		_context = dbContext;
 		_repository = TeacherRepository;

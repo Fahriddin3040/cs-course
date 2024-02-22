@@ -8,7 +8,7 @@ namespace School.Services;
 public class TrusteeService : ITrusteeService
 {
 	private SchoolDbContext _context;
-	private ITrusteeRepository _repository;
+	private IBaseRepository _repository;
 
 	public TrusteeService(SchoolDbContext dbContext, ITrusteeRepository TrusteeRepository)
 	{
@@ -21,7 +21,7 @@ public class TrusteeService : ITrusteeService
         return _repository.Create(obj);
     }
 
-    public void Delete(Guid id)
+    public bool Delete(Guid id)
     {
         _repository.Delete(id);
     }
@@ -31,12 +31,12 @@ public class TrusteeService : ITrusteeService
         return _repository.GetAll();
     }
 
-    public Trustee GetById(Guid id)
+    public bool GetById(Guid id)
     {
 		return _repository.GetById(id);
     }
 
-    public Trustee Update(Guid id, Trustee obj)
+    public bool Update(Guid id, Trustee obj)
     {
         return _repository.Update(id, obj);
     }
