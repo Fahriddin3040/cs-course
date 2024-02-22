@@ -1,7 +1,6 @@
 using School.Services;
 using School.Models;
 using Microsoft.AspNetCore.Mvc;
-using School.Utils.Abstracts.Services;
 using System.Threading.Tasks;
 
 namespace School.Controllers;
@@ -10,7 +9,7 @@ namespace School.Controllers;
 [ApiController]
 public class TeacherController : ControllerBase
 {
-	private readonly ITeacherService _service;
+	private readonly TeacherService _service;
 
 	public TeacherController(TeacherService teacherService)
 	{
@@ -20,7 +19,7 @@ public class TeacherController : ControllerBase
 	[HttpGet]
 	public IActionResult GetAll()
 	{
-		ICollection<Teacher> teachers =  _service.GetAll();
+		IQueryable<Teacher> teachers = _service.GetAll();
 
 		return Ok(teachers);
 	}
@@ -28,8 +27,13 @@ public class TeacherController : ControllerBase
 	[HttpPost]
 	public IActionResult Create([FromBody] Teacher newTeacher)
 	{
-		Teacher createdTeacher = _service.Create(newTeacher);
+		bool is_created = _service.Create(newTeacher);
+		
+		if(!is_created)
+		{
+			throw new Exception("Ошибка при сохранении.");
+		}
 
-		return Ok(createdTeacher);
+		return Ok("Успешно сохранено.");
 	}
 }

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using School.DataBase;
+using School.Models;
 using School.Repositories;
 using School.Services;
 using School.Utils.Abstracts.Repositories;
-using School.Utils.Abstracts.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +16,8 @@ builder.Services.AddDbContext<SchoolDbContext>(con => con.UseNpgsql(
     ("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089"))
     .LogTo(Console.Write));
 
-
-
+builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
+builder.Services.AddScoped<TeacherService>();
 
 var app = builder.Build();
 

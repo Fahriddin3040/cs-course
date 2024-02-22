@@ -31,4 +31,8 @@ public abstract class BaseService<T> : IBaseService<T> where T : class, IBaseEnt
 	{
 		return _repository.Delete(id);
 	}
+	public bool Save()
+	{
+		return _repository.Save();
+	}
 }
