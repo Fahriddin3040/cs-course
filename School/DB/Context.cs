@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualBasic;
 using School.Models;
 using School.Utils.Base;
@@ -40,6 +41,7 @@ public class SchoolDbContext : DbContext
 		ConfigureTrustee(modelBuilder);
 		ConfigureGroup(modelBuilder);
 		ConfigureSubject(modelBuilder);
+		ConfigureTeachersSubjects(modelBuilder);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -62,6 +64,9 @@ public class SchoolDbContext : DbContext
 				.WithOne(g => g.Curator)
 				.HasForeignKey<Teacher>(e => e.GroupId);
 
+			e.Property(e => e.GroupId)
+				.IsRequired(required: false);
+
 			e.Property(e => e.Address)
 				.IsRequired(required: false);
 
@@ -72,7 +77,8 @@ public class SchoolDbContext : DbContext
 				.HasDefaultValue(value: DateTime.Now);
 
 			e.Property(e => e.UpdatedAt)
-				.IsRequired(required: false);
+				.IsRequired(required: false)
+				.HasDefaultValue(value: DateTime.Now);
 		});
 	}
 	private void ConfigureStudent(ModelBuilder modelBuilder)
@@ -136,5 +142,20 @@ public class SchoolDbContext : DbContext
 			e.Property(e => e.HomeTask)
 				.IsRequired(required: false);
 		});
+	}
+
+	private void ConfigureTeachersSubjects(ModelBuilder modelBuilder)
+	{
+    modelBuilder.Entity<TeachersSubjects>(e =>
+    {
+        e.HasKey(ts => new { ts.TeacherId, ts.SubjectId }); // Composite key
+
+        e.HasOne(ts => ts.Teacher)
+            .WithMany(t => t.Subjects)
+            .HasForeignKey(ts => ts.TeacherId);
+
+        e.HasOne(ts => ts.Subject)
+            .WithMany(s => s.Teachers)
+            .HasForeignKey(ts => ts.SubjectId);
 	}
 }

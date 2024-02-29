@@ -1,9 +1,6 @@
-using School.Services;
 using School.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Text.Json.Serialization;
 using School.Utils.Base;
 
 
@@ -21,6 +18,31 @@ public class TeacherController : BaseController<Teacher>
     {
         return base.Get();
     }
+
+    [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+    public override IActionResult Get(Guid id)
+    {
+        return base.Get(id);
+    }
+
+    [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
+    public override IActionResult Create([FromBody] Teacher obj)
+    {
+        return base.Create(obj);
+    }
+
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+	public override IActionResult Update(Guid id, [FromBody] Teacher obj)
+	{
+		return base.Update(id, obj);
+	}
+
+	[ProducesResponseType((int)HttpStatusCode.NoContent)]
+	public override IActionResult Delete(Guid id)
+	{
+		return base.Delete(id);
+	}
+
 }
 // [Route("api/teachers")]
 // [ApiController]
