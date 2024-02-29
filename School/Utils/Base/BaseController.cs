@@ -10,8 +10,8 @@ namespace School.Controllers;
 [ApiController]
 public abstract class BaseController<TEntity> : ControllerBase, IBaseController<TEntity> where TEntity : class, IBaseEntity
 {
-    private readonly IBaseService<TEntity> _service;
-	private readonly ILogger<IBaseController<TEntity>>? _logger;
+    protected readonly IBaseService<TEntity> _service;
+	protected readonly ILogger<IBaseController<TEntity>>? _logger;
 
     public BaseController(IBaseService<TEntity> baseService, ILogger<BaseController<TEntity>>? logger)
     {
@@ -36,12 +36,12 @@ public abstract class BaseController<TEntity> : ControllerBase, IBaseController<
 	{
 		bool isCreated = _service.Create(obj);
 
-		TEntity createdObj = _service.GetById(obj.Id);
-
 		if(!isCreated)
 		{
 			return NotFound();
 		}
+
+		TEntity createdObj = _service.GetById(obj.Id);
 
 		return CreatedAtAction(nameof(Get), new { id = createdObj.Id});
 	}

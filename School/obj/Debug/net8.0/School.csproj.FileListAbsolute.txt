@@ -108,3 +108,5 @@
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.csproj.Up2Date
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/School.genruntimeconfig.cache
 /home/ren/Development/Projects/csharp/School/obj/Debug/net8.0/ref/School.dll
+/home/ren/Development/Projects/csharp/School/bin/Debug/net8.0/AutoMapper.dll
+/home/ren/Development/Projects/csharp/School/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

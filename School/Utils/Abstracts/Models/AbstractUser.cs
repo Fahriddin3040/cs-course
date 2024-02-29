@@ -1,25 +1,27 @@
 using School.Utils.Base;
-using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace School.Utils.Abstracts.Models;
-
-public abstract class AbstractUser: IBaseEntity
+namespace School.Utils.Abstracts.Models
 {
-	public Guid Id { get; }
-	public string Username { get; set; }
-	public string FirstName { get; set; }
-	public string LastName { get; set; }
-	public string PhoneNumber { get; set; }
-	public string? Address { get; set; }
-	public int Age { get; set; }
-	public string? Email { get; set; }
-	public DateTime? CreatedAt { get; }
-	public DateTime? UpdatedAt { get; }
-	public void ShowInfo()
+	public abstract class AbstractUser : IBaseEntity
 	{
-		string fullName = $"{this.FirstName} {this.LastName}";
-		string auditable = $"Created at: {this.CreatedAt} Updated at: {this.UpdatedAt}";
+		public Guid Id { get; }
+		public string? Username { get; set; }
+		public string? FirstName { get; set; }
+		public string? LastName { get; set; }
+		public string? PhoneNumber { get; set; }
+		public string? Address { get; set; }
+		public int Age { get; set; }
+		public string? Email { get; set; }
+		public DateTime? CreatedAt { get; }
+		public DateTime? UpdatedAt { get; }
 
-		Console.WriteLine($"{fullName}\n{auditable}");
+		public void ShowInfo()
+		{
+			string fullName = $"{FirstName} {LastName}";
+			string auditable = $"Created at: {CreatedAt} Updated at: {UpdatedAt}";
+
+			Console.WriteLine($"{fullName}\n{auditable}");
+		}
 	}
 }

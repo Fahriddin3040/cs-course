@@ -56,10 +56,6 @@ public class SchoolDbContext : DbContext
 		{
 			e.HasKey(e => e.Id);
 
-			e.HasMany(e => e.Subjects)
-				.WithMany(s => s.Teachers)
-				.UsingEntity("TeachersSubjects");
-
 			e.HasOne(e => e.Group)
 				.WithOne(g => g.Curator)
 				.HasForeignKey<Teacher>(e => e.GroupId);
@@ -157,5 +153,6 @@ public class SchoolDbContext : DbContext
         e.HasOne(ts => ts.Subject)
             .WithMany(s => s.Teachers)
             .HasForeignKey(ts => ts.SubjectId);
-	}
+	});
+}
 }

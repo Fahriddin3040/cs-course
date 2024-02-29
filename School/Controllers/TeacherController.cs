@@ -2,112 +2,143 @@ using School.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using School.Utils.Base;
+using School.dto;
+using AutoMapper;
 
 
 namespace School.Controllers;
 
-[Route("api/v1/teacher")]
+[Route("api/teachers")]
 [ApiController]
-public class TeacherController : BaseController<Teacher>
+public class TeacherController : ControllerBase
 {
-	public TeacherController(IBaseService<Teacher> baseService, ILogger<TeacherController> logger) : base(baseService, logger)
-	{}
+    private readonly IBaseService<Teacher> _service;
+	private readonly ILogger<TeacherController> _logger;
+    private IMapper _mapper;
 
-	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-    public override IActionResult Get()
+    public TeacherController(IBaseService<Teacher> baseService, ILogger<TeacherController> logger, IMapper mapper)
     {
-        return base.Get();
-    }
-
-    [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-    public override IActionResult Get(Guid id)
-    {
-        return base.Get(id);
-    }
-
-    [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
-    public override IActionResult Create([FromBody] Teacher obj)
-    {
-        return base.Create(obj);
-    }
-
-	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-	public override IActionResult Update(Guid id, [FromBody] Teacher obj)
-	{
-		return base.Update(id, obj);
+		_service = baseService;
+		_logger = logger;
+        _mapper = mapper;
 	}
 
-	[ProducesResponseType((int)HttpStatusCode.NoContent)]
-	public override IActionResult Delete(Guid id)
+	[HttpGet]
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+	public IActionResult Get()
 	{
-		return base.Delete(id);
+		return Ok(_service.GetAll());
 	}
 
+	[HttpGet("{id}")]
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+	public IActionResult Get(Guid id)
+	{
+		return Ok(_service.GetById(id));
+	}
+
+	[HttpPost]
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
+    public IActionResult Create([FromBody] TeacherCreateDTO obj)
+    {
+        Teacher newObj = _mapper.Map<Teacher>(obj);
+
+        bool isCreated = _service.Create(newObj);
+
+		if(!isCreated)  
+		{
+			return NotFound();
+		}
+
+		Teacher createdObj = _service.GetById(newObj.Id);
+
+        return CreatedAtAction(nameof(Get), new { id = createdObj.Id }, createdObj);
+		
 }
-// [Route("api/teachers")]
+
+	[HttpPut("{id}")]
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+	public IActionResult Update(Guid id, [FromBody]Teacher obj)
+	{
+		_service.Update(id, obj);
+		Teacher updatedObj = _service.GetById(id);
+
+		return Ok(updatedObj);
+	}
+
+	[HttpDelete("{id}")]
+	[ProducesResponseType((int)HttpStatusCode.NoContent)]
+	public IActionResult Delete(Guid id)
+	{
+		bool isDeleted = _service.Delete(id);
+
+		if(!isDeleted)
+		{
+			throw new Exception("Deleting exception");
+		}
+
+		return NoContent();
+	}
+}
+
+// [Route("api/v1/teacher")]
 // [ApiController]
-// public class TeacherController : ControllerBase
+// public class TeacherController : BaseController<Teacher>
 // {
-//     private readonly TeacherService _service;
-// 	private readonly ILogger<TeacherController> _logger;
+// 	public TeacherController(IBaseService<Teacher> baseService, ILogger<TeacherController> logger) : base(baseService, logger)
+// 	{}
 
-//     public TeacherController(TeacherService baseService, ILogger<TeacherController> logger)
+// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+//     public override IActionResult Get()
 //     {
-// 		_service = baseService;
-// 		_logger = logger;
-// 	}
+//         return base.Get();
+//     }
 
-// 	[HttpGet]
-// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-// 	public IActionResult Get()
-// 	{
-// 		return Ok(_service.GetAll());
-// 	}
+//     [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+//     public override IActionResult Get(Guid id)
+//     {
+//         return base.Get(id);
+//     }
 
-// 	[HttpGet("{id}")]
-// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-// 	public IActionResult Get(Guid id)
-// 	{
-// 		return Ok(_service.GetById(id));
-// 	}
+//     [HttpPost("createwithdto")]
+//     [ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
+//     public IActionResult CreatingMe([FromBody] TeacherCreateDTO obj)
+//     {
+//         Teacher newObj = new Teacher
+//         {
+//             Username = obj.Username,
+//             FirstName = obj.FirstName,
+//             LastName = obj.LastName,
+//             PhoneNumber = obj.PhoneNumber,
+//             Address = obj.Address,
+//             Age = obj.Age,
+//             Email = obj.Email,
+//             GroupId = obj.GroupId
+//         };
 
-// 	[HttpPost]
-// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
-// 	public IActionResult Create([FromBody] Teacher obj)
-// 	{
-// 		bool isCreated = _service.Create(obj);
-
-// 		Teacher createdObj = _service.GetById(obj.Id);
+//         bool isCreated = _service.Create(newObj);
 
 // 		if(!isCreated)
 // 		{
 // 			return NotFound();
 // 		}
 
+// 		Teacher createdObj = _service.GetById(newObj.Id);
+
 // 		return CreatedAtAction(nameof(Get), new { id = createdObj.Id});
-// 	}
 
-// 	[HttpPut("{id}")]
+//     }
+
 // 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
-// 	public IActionResult Update(Guid id, [FromBody]Teacher obj)
+// 	public override IActionResult Update(Guid id, [FromBody] Teacher obj)
 // 	{
-// 		_service.Update(id, obj);
-// 		Teacher updatedObj = _service.GetById(id);
-
-// 		return Ok(updatedObj);
+// 		return base.Update(id, obj);
 // 	}
 
-// 	[HttpDelete("{id}")]
 // 	[ProducesResponseType((int)HttpStatusCode.NoContent)]
-// 	public IActionResult Delete(Guid id)
+// 	public override IActionResult Delete(Guid id)
 // 	{
-// 		bool isDeleted = _service.Delete(id);
-
-// 		if(!isDeleted)
-// 		{
-// 			throw new Exception("Deleting exception");
-// 		}
-
-// 		return NoContent();
+// 		return base.Delete(id);
 // 	}
+
 // }

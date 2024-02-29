@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "CQf++YDuQd3NmKGnK4vN/6hnsnz5tdzEz3kjD074SRUxNBW4PWNd8RSCjT7SPpepTTO/b9t0sFZZByByvSA0Xg==",
+  "dgSpecHash": "TxrlnY2Mr4sTz1YhhBS/CpryCqwZJGSNK/hGmS0bbauc1zbXZQDtXq+UXAMhaxlqpr/N4JTaw4gjXbtaKsrBlw==",
   "success": true,
   "projectFilePath": "/home/ren/Development/Projects/csharp/School/School.csproj",
   "expectedPackageFiles": [
+    "/home/ren/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/home/ren/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/home/ren/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/ren/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/home/ren/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
@@ -51,5 +53,16 @@
     "/home/ren/.nuget/packages/system.text.json/8.0.0/system.text.json.8.0.0.nupkg.sha512",
     "/home/ren/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requires AutoMapper (= 12.0.1) but version AutoMapper 13.0.1 was resolved.",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
