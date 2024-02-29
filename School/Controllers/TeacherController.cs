@@ -1,39 +1,91 @@
 using School.Services;
 using School.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Text.Json.Serialization;
+using School.Utils.Base;
+
 
 namespace School.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/v1/teacher")]
 [ApiController]
-public class TeacherController : ControllerBase
+public class TeacherController : BaseController<Teacher>
 {
-	private readonly TeacherService _service;
+	public TeacherController(IBaseService<Teacher> baseService, ILogger<TeacherController> logger) : base(baseService, logger)
+	{}
 
-	public TeacherController(TeacherService teacherService)
-	{
-		_service = teacherService;
-	}
-
-	[HttpGet]
-	public IActionResult GetAll()
-	{
-		IQueryable<Teacher> teachers = _service.GetAll();
-
-		return Ok(teachers);
-	}
-
-	[HttpPost]
-	public IActionResult Create([FromBody] Teacher newTeacher)
-	{
-		bool is_created = _service.Create(newTeacher);
-		
-		if(!is_created)
-		{
-			throw new Exception("Ошибка при сохранении.");
-		}
-
-		return Ok("Успешно сохранено.");
-	}
+	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+    public override IActionResult Get()
+    {
+        return base.Get();
+    }
 }
+// [Route("api/teachers")]
+// [ApiController]
+// public class TeacherController : ControllerBase
+// {
+//     private readonly TeacherService _service;
+// 	private readonly ILogger<TeacherController> _logger;
+
+//     public TeacherController(TeacherService baseService, ILogger<TeacherController> logger)
+//     {
+// 		_service = baseService;
+// 		_logger = logger;
+// 	}
+
+// 	[HttpGet]
+// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+// 	public IActionResult Get()
+// 	{
+// 		return Ok(_service.GetAll());
+// 	}
+
+// 	[HttpGet("{id}")]
+// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+// 	public IActionResult Get(Guid id)
+// 	{
+// 		return Ok(_service.GetById(id));
+// 	}
+
+// 	[HttpPost]
+// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.Created)]
+// 	public IActionResult Create([FromBody] Teacher obj)
+// 	{
+// 		bool isCreated = _service.Create(obj);
+
+// 		Teacher createdObj = _service.GetById(obj.Id);
+
+// 		if(!isCreated)
+// 		{
+// 			return NotFound();
+// 		}
+
+// 		return CreatedAtAction(nameof(Get), new { id = createdObj.Id});
+// 	}
+
+// 	[HttpPut("{id}")]
+// 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
+// 	public IActionResult Update(Guid id, [FromBody]Teacher obj)
+// 	{
+// 		_service.Update(id, obj);
+// 		Teacher updatedObj = _service.GetById(id);
+
+// 		return Ok(updatedObj);
+// 	}
+
+// 	[HttpDelete("{id}")]
+// 	[ProducesResponseType((int)HttpStatusCode.NoContent)]
+// 	public IActionResult Delete(Guid id)
+// 	{
+// 		bool isDeleted = _service.Delete(id);
+
+// 		if(!isDeleted)
+// 		{
+// 			throw new Exception("Deleting exception");
+// 		}
+
+// 		return NoContent();
+// 	}
+// }

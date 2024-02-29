@@ -8,6 +8,7 @@ namespace School.Repositories;
 public class SqlRepository<T> : ISqlRepository<T> where T : class, IBaseEntity
 {
 	private readonly SchoolDbContext _context;
+	
 	private bool Disposed = false; 
 	
 	public SqlRepository(SchoolDbContext dbContext)
@@ -28,7 +29,7 @@ public class SqlRepository<T> : ISqlRepository<T> where T : class, IBaseEntity
 
 		return this.Save();
 	}
-	public bool Update(T obj)
+	public bool Update(Guid id, T obj)
 	{
 		var existing_obj = _context.Set<T>().SingleOrDefault(e => e.Id == obj.Id);
 

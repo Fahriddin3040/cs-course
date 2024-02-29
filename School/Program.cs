@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using School.DataBase;
 using School.Models;
 using School.Repositories;
 using School.Services;
 using School.Utils.Abstracts.Repositories;
+using School.Utils.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +14,22 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddLogging(log =>
+{
+    log.AddConsole();
+});
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 builder.Services.AddDbContext<SchoolDbContext>(con => con.UseNpgsql(
     ("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089"))
     .LogTo(Console.Write));
 
+builder.Services.AddScoped(typeof(SchoolDbContext));
 builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
-builder.Services.AddScoped<TeacherService>();
+builder.Services.AddScoped(typeof(IBaseService<Teacher>), typeof(TeacherService));
+
 
 var app = builder.Build();
 

@@ -9,25 +9,25 @@ public abstract class BaseService<T> : IBaseService<T> where T : class, IBaseEnt
 
 	public BaseService(ISqlRepository<T> sqlRepository)
 	{
-		_repository = sqlRepository ?? throw new ArgumentNullException(nameof(sqlRepository));
+		_repository = sqlRepository;
 	}
-	public virtual IQueryable<T> GetAll()
+	public IQueryable<T> GetAll()
 	{
 		return _repository.GetAll();
 	}
-	public virtual T GetById(Guid id)
+	public T GetById(Guid id)
 	{
 		return _repository.GetById(id);
 	}
-	public virtual bool Create(T obj)
+	public bool Create(T obj)
 	{
 		return _repository.Create(obj);
 	}
-	public virtual bool Update(T updatedObj)
+	public bool Update(Guid id, T updatedObj)
 	{
-		return _repository.Update(updatedObj);
+		return _repository.Update(id, updatedObj);
 	}
-	public virtual bool Delete(Guid id)
+	public bool Delete(Guid id)
 	{
 		return _repository.Delete(id);
 	}
