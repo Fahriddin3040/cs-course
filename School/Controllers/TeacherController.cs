@@ -27,6 +27,7 @@ public class TeacherController : ControllerBase
 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
 	public IActionResult Get()
 	{
+        _logger.LogInformation("Get all teachers");
 		return Ok(_service.GetAll());
 	}
 
@@ -56,11 +57,16 @@ public class TeacherController : ControllerBase
 		
 }
 
-	[HttpPut("{id}")]
+	[HttpPatch("{id}")]
 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
 	public IActionResult Update(Guid id, [FromBody]Teacher obj)
 	{
-		_service.Update(id, obj);
+		bool is_updated = _service.Update(id, obj);
+
+		if(!is_updated) {
+			throw new Exception("Updating exception");
+		}
+
 		Teacher updatedObj = _service.GetById(id);
 
 		return Ok(updatedObj);

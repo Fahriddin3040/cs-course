@@ -19,17 +19,27 @@ public class Configuration
 		services.AddControllersWithViews();
 		services.AddEndpointsApiExplorer();
 		services.AddSwaggerGen();
+		
+		services.AddAutoMapper(typeof(MappingProfile));
 
 		services.AddLogging(log =>
 		{
+			log.AddDebug();
 			log.AddConsole();
 		});
 
 		services.AddControllers()
-			.AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+			.AddJsonOptions(options => 
+			{
+				options.JsonSerializerOptions
+				.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+			});
+
 		services.AddDbContext<SchoolDbContext>(con => con.UseNpgsql(
 			("Host=localhost;Port=5432;Database=school_db;Username=school_admin;password=0089"))
 			.LogTo(Console.Write));
+		
+		services.AddScoped(typeof(ILogger<Teacher>), typeof(Logger<Teacher>));
 		services.AddScoped(typeof(SchoolDbContext));
 		services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
 		services.AddScoped(typeof(IBaseService<Teacher>), typeof(TeacherService));
