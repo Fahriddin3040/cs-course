@@ -13,21 +13,19 @@ namespace School.Controllers;
 public class TeacherController : ControllerBase
 {
     private readonly IBaseService<Teacher> _service;
-	private readonly ILogger<TeacherController> _logger;
     private IMapper _mapper;
 
-    public TeacherController(IBaseService<Teacher> baseService, ILogger<TeacherController> logger, IMapper mapper)
-    {
+    public TeacherController(
+		IBaseService<Teacher> baseService, IMapper mapper
+		) {
 		_service = baseService;
-		_logger = logger;
-        _mapper = mapper;
+		_mapper = mapper;
 	}
 
 	[HttpGet]
 	[ProducesResponseType(typeof(Teacher), (int)HttpStatusCode.OK)]
 	public IActionResult Get()
 	{
-        _logger.LogInformation("Get all teachers");
 		return Ok(_service.GetAll());
 	}
 

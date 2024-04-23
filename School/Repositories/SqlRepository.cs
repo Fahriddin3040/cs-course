@@ -1,3 +1,4 @@
+using System.Runtime;
 using Microsoft.EntityFrameworkCore.Storage;
 using School.DataBase;
 using School.Utils.Abstracts.Repositories;

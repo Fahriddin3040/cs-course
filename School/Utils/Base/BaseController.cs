@@ -43,7 +43,7 @@ public abstract class BaseController<TEntity> : ControllerBase, IBaseController<
 
 		TEntity createdObj = _service.GetById(obj.Id);
 
-		return CreatedAtAction(nameof(Get), new { id = createdObj.Id});
+		return CreatedAtAction(nameof(TEntity), new { id = createdObj.Id});
 	}
 
 	[HttpPut("{id}")]

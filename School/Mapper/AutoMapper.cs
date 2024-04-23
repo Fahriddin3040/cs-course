@@ -13,6 +13,10 @@ public class MappingProfile : Profile
 			.ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
 		CreateMap<TeacherCreateDTO, Teacher>();
 		CreateMap<TeacherShortDTO, Teacher>();
+		CreateMap<Student, StudentCreateDTO>();
+		CreateMap<StudentCreateDTO, Student>();
+		CreateMap<StudentUpdateDTO, Student>();
+		CreateMap<Student, StudentUpdateDTO>();
 		
 		// CreateMap<GroupCreateDTO, Group>();
 		// CreateMap<GroupUpdateDTO, Group>();

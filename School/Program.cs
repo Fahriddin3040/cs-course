@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using School.Configuration;
 using School.DataBase;
+using School.Middlewares;
 using School.Models;
 using School.Repositories;
 using School.Services;
@@ -37,8 +38,8 @@ app.UseSwaggerUI(options =>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+// app.UseMiddleware<ApplicationMiddleware>();
 
 app.UseAuthorization();
 

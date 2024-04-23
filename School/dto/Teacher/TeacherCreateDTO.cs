@@ -3,7 +3,7 @@ using School.Utils.Base;
 
 namespace School.dto;
 
-public class TeacherCreateDTO : BaseAbstractUserCreateDTO
+public class TeacherCreateDTO : AbstractUserCreateDto
 {
 	public Guid? GroupId { get; set; }
 }

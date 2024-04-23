@@ -1,4 +1,3 @@
-using School.DataBase;
 using School.Models;
 using School.Utils.Abstracts.Repositories;
 using School.Utils.Base;
